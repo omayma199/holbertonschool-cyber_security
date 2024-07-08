@@ -1,2 +1,2 @@
 #!/bin/bash
-lsb_release -i | awk -F':' '{print "Distributor ID:" $2}' | sed 's/^[ \t]*//'
+lsb_release -s -i | tr -d '\n'
