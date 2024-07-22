@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -n $1 | sha1sum | cut -c-40 >> 0_hash.txt
+echo $(echo -n $1 | sha1sum) > 0_hash.txt
