@@ -7,7 +7,4 @@ LOG_FILE="logs.txt"
 ATTACKER_IP=$(awk '{print $1}' "$LOG_FILE" | grep -Eo '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | sort | uniq -c | sort -nr | head -n 1 | awk '{print $2}')
 
 # Count the number of requests from the attacker's IP address
-REQUEST_COUNT=$(grep "$ATTACKER_IP" "$LOG_FILE" | wc -l)
-
-echo "The attacker IP is: $ATTACKER_IP"
-echo "Number of requests sent by the attacker: $REQUEST_COUNT"
+grep "$ATTACKER_IP" "$LOG_FILE" | wc -l
