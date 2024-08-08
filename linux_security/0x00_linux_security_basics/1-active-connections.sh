@@ -1,2 +1,2 @@
 #!/bin/bash
-ss -tuanp
+sudo ss -tuanp
