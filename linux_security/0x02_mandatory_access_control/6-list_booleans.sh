@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo getsebool -a | awk '{print $1}'
+sudo semanage boolean -l | awk '{print $1}'
