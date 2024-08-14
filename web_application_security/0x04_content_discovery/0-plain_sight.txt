@@ -1,1 +1,1 @@
-/hidden-directory/, /secret-page, wordpress a9f0f959a1be1c83ae317d52f64d24f3b0f1a0743b8dbdd20b8bc8f0b3b92595
+/hidden-directory/, /secret-page, wordpress
