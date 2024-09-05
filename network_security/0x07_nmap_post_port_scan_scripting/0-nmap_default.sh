@@ -1,2 +1,2 @@
 #!/bin/bash
-[ -z "$1" ] && exit 1; nmap -sC "$1"
+[ -z "$1" ] && exit 1; nmap --script default "$1"
