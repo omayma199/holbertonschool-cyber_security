@@ -1,2 +1,3 @@
 #!/bin/bash
-awk '{print $7}' "$1" | sort | uniq -c | sort -nr | head -n 1 | awk '{print $2}'
+LOG_FILE="logs.txt"
+awk -F' ' '{print $7}' "$LOG_FILE" | sort | uniq -c | sort -nr | awk '{print $2}' | head -n 1
