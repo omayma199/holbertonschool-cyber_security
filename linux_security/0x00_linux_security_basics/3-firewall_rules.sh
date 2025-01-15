@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo iptables-legacy -L -v
+sudo iptables -L -v
