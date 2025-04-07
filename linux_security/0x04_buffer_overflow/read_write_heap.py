@@ -39,23 +39,22 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
 
             if not heap:
                 print("Error: Could not find the heap segment.")
+                sys.exit(1)
 
             # Parse the heap segment's memory range
-            heap_start, heap_end = [int(x, 16)
-                                    for x in heap.split()[0].split("-")]
+            heap_start, heap_end = [int(x, 16) for x in heap.split()[0].split("-")]
+
         # Open the memory file to search and replace in the heap
         with open(mem_path, "r+b") as mem_file:
             mem_file.seek(heap_start)
             heap_data = mem_file.read(heap_end - heap_start)
 
-            # Ensure the replacement string is not longer
-            # than the search string
+            # Ensure the replacement string is not longer than the search string
             if len(replace_string) > len(search_string):
                 print(
-                    "Warning: Replacement string is longer"
-                    "than the search string."
-                    "This may cause memory corruption."
-                    )
+                    "Warning: Replacement string is longer than the search string."
+                    " This may cause memory corruption."
+                )
 
             # Search for the target string in the heap
             offset = heap_data.find(search_string)
@@ -67,8 +66,7 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
             mem_file.seek(heap_start + offset)
             mem_file.write(replace_string.ljust(len(search_string), b'\x00'))
 
-            print(
-                "SUCCESS!")
+            print("SUCCESS!")
 
     except PermissionError:
         print("Error: Permission denied. Try running as sudo.")
@@ -86,11 +84,15 @@ def main():
     Main function to handle input arguments
     and execute the heap string replacement.
     """
+    if len(sys.argv) != 4:
+        print("Usage: read_write_heap.py pid search_string replace_string")
+        sys.exit(1)
 
     try:
         pid = int(sys.argv[1])
     except ValueError:
         print("Error: PID must be an integer.")
+        sys.exit(1)
 
     search_string = sys.argv[2].encode()
     replace_string = sys.argv[3].encode()
@@ -100,3 +102,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
