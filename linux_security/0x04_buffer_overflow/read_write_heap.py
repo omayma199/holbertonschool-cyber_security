@@ -38,7 +38,8 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
                     break
 
             if not heap:
-                return  # No heap segment found, exit quietly
+                print("Error: Could not find the heap segment.")
+                return
 
             # Parse the heap segment's memory range
             heap_start, heap_end = [int(x, 16) for x in heap.split()[0].split("-")]
@@ -50,38 +51,44 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
 
             # Ensure the replacement string is not longer than the search string
             if len(replace_string) > len(search_string):
-                return  # If replacement string is longer, exit quietly
+                print("Error: Replacement string is longer than search string.")
+                return
 
             # Search for the target string in the heap
             offset = heap_data.find(search_string)
             if offset == -1:
-                return  # If not found, exit quietly
+                print("Error: Search string not found in the heap.")
+                return
 
             # Replace the string in the memory
             mem_file.seek(heap_start + offset)
             mem_file.write(replace_string.ljust(len(search_string), b'\x00'))
 
-            print("SUCCESS!")  # Only print once on successful replacement
-            return  # Exit quietly after success
-
-    except Exception:
-        return  # Exit quietly on any error
+    except PermissionError:
+        print("Error: Permission denied. Try running as sudo.")
+    except FileNotFoundError:
+        print(f"Error: Process with PID {pid} not found.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 
 def main():
     if len(sys.argv) != 4:
-        return  # Exit quietly if the arguments are not correct
+        print("Usage: python3 read_write_heap.py pid search_string replace_string")
+        return  # Exit if the arguments are not correct
 
     try:
         pid = int(sys.argv[1])
     except ValueError:
-        return  # Exit quietly if PID is invalid
+        print("Error: PID must be an integer.")
+        return
 
     search_string = sys.argv[2].encode()
     replace_string = sys.argv[3].encode()
 
     if len(replace_string) > len(search_string):
-        return  # Exit quietly if replacement string is longer
+        print("Error: Replacement string is longer than search string.")
+        return
 
     find_and_replace_in_heap(pid, search_string, replace_string)
 
