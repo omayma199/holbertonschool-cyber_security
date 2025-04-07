@@ -38,8 +38,7 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
                     break
 
             if not heap:
-                print("Error: Could not find the heap segment.")
-                sys.exit(1)
+                return  # No heap segment found, exit quietly
 
             # Parse the heap segment's memory range
             heap_start, heap_end = [int(x, 16) for x in heap.split()[0].split("-")]
@@ -51,55 +50,41 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
 
             # Ensure the replacement string is not longer than the search string
             if len(replace_string) > len(search_string):
-                print(
-                    "Warning: Replacement string is longer than the search string."
-                    " This may cause memory corruption."
-                )
+                return  # If replacement string is longer, exit quietly
 
             # Search for the target string in the heap
             offset = heap_data.find(search_string)
             if offset == -1:
-                print("Error: Search string not found in the heap.")
-                sys.exit(1)
+                return  # If not found, exit quietly
 
             # Replace the string in the memory
             mem_file.seek(heap_start + offset)
             mem_file.write(replace_string.ljust(len(search_string), b'\x00'))
 
-            print("SUCCESS!")
+            print("SUCCESS!")  # Only print once on successful replacement
+            return  # Exit quietly after success
 
-    except PermissionError:
-        print("Error: Permission denied. Try running as sudo.")
-        sys.exit(1)
-    except FileNotFoundError:
-        print("Error: Process not found. Is the PID correct?")
-        sys.exit(1)
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        sys.exit(1)
+    except Exception:
+        return  # Exit quietly on any error
 
 
 def main():
-    """
-    Main function to handle input arguments
-    and execute the heap string replacement.
-    """
     if len(sys.argv) != 4:
-        print("Usage: read_write_heap.py pid search_string replace_string")
-        sys.exit(1)
+        return  # Exit quietly if the arguments are not correct
 
     try:
         pid = int(sys.argv[1])
     except ValueError:
-        print("Error: PID must be an integer.")
-        sys.exit(1)
+        return  # Exit quietly if PID is invalid
 
     search_string = sys.argv[2].encode()
     replace_string = sys.argv[3].encode()
+
+    if len(replace_string) > len(search_string):
+        return  # Exit quietly if replacement string is longer
 
     find_and_replace_in_heap(pid, search_string, replace_string)
 
 
 if __name__ == "__main__":
     main()
-
