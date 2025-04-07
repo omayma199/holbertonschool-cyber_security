@@ -42,7 +42,9 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
                 return
 
             # Parse the heap segment's memory range
-            heap_start, heap_end = [int(x, 16) for x in heap.split()[0].split("-")]
+            heap_start, heap_end = [
+                int(x, 16) for x in heap.split()[0].split("-")
+            ]
 
         # Open the memory file to search and replace in the heap
         with open(mem_path, "r+b") as mem_file:
