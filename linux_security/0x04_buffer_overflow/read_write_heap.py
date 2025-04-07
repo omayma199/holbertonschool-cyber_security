@@ -64,7 +64,9 @@ def find_and_replace_in_heap(pid, search_string, replace_string):
 
             # Replace the string in the memory
             mem_file.seek(heap_start + offset)
-            mem_file.write(replace_string.ljust(len(search_string), b'\x00'))
+            mem_file.write(
+                replace_string.ljust(len(search_string), b'\x00')
+            )
 
     except PermissionError:
         print("Error: Permission denied. Try running as sudo.")
