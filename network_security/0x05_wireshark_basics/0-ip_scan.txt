@@ -1,0 +1,1 @@
+ip.proto == 6 and ip.proto == 17 and ip.proto == 1
