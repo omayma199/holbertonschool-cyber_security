@@ -15,9 +15,11 @@ Note:
 
 import sys
 
+
 def find_heap(pid):
     """
-    Parse /proc/<pid>/maps to locate the heap segment with read-write permissions.
+    Parse /proc/<pid>/maps to locate the heap segment with 
+    read-write permissions.
 
     Args:
         pid (str): Process ID
