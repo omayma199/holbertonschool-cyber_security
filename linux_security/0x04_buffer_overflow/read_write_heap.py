@@ -1,34 +1,76 @@
 #!/usr/bin/python3
 """
-read_write_heap - Search and replace a string in the heap memory of a running process.
+read_write_heap.py
+
+This script searches for a string in the heap of a running process and
+replaces it with another string of the same length or less.
 
 Usage:
     ./read_write_heap.py <pid> <search_string> <replace_string>
 
-This script scans the heap segment of a process, finds a target string,
-and replaces it with another string (equal or shorter in length).
+Note:
+    - You must have permission to read/write the process memory (run as root).
+    - Replacement string must not be longer than the original.
 """
 
 import sys
 
 def find_heap(pid):
+    """
+    Parse /proc/<pid>/maps to locate the heap segment with read-write permissions.
+
+    Args:
+        pid (str): Process ID
+
+    Returns:
+        tuple: (start_address, end_address) of the heap as integers
+    """
     with open(f'/proc/{pid}/maps', 'r') as maps_file:
         for line in maps_file:
             if '[heap]' in line:
-                start_str, end_str = line.split()[0].split('-')
-                return int(start_str, 16), int(end_str, 16)
-    print("Heap not found")
+                parts = line.split()
+                perms = parts[1]
+                # Check for read-write permissions on heap
+                if 'rw' not in perms:
+                    continue
+                start_str, end_str = parts[0].split('-')
+                start = int(start_str, 16)
+                end = int(end_str, 16)
+                return start, end
+    print('Heap segment with rw permissions not found')
     sys.exit(1)
 
+
 def get_heap(pid, start, end):
+    """
+    Read the heap segment from /proc/<pid>/mem.
+
+    Args:
+        pid (str): Process ID
+        start (int): Start address of the heap
+        end (int): End address of the heap
+
+    Returns:
+        bytes: Heap content
+    """
     with open(f'/proc/{pid}/mem', 'rb') as mem_file:
         mem_file.seek(start)
         return mem_file.read(end - start)
 
+
 def write_heap(pid, address, data):
+    """
+    Write data to a specific address in the process heap.
+
+    Args:
+        pid (str): Process ID
+        address (int): Memory address to write to
+        data (bytes): Data to write
+    """
     with open(f'/proc/{pid}/mem', 'rb+') as mem_file:
         mem_file.seek(address)
         mem_file.write(data)
+
 
 def main():
     if len(sys.argv) != 4:
@@ -37,18 +79,27 @@ def main():
 
     pid = sys.argv[1]
     search = sys.argv[2].encode()
-    replace = sys.argv[3].encode().ljust(len(search), b'\x00')
+    replace = sys.argv[3].encode()
 
-    start, end = find_heap(pid)
-    heap = get_heap(pid, start, end)
-
-    offset = heap.find(search)
-    if offset == -1:
-        print("String not found")
+    if len(replace) > len(search):
+        print("Error: replace string longer than search string")
         sys.exit(1)
 
-    write_heap(pid, start + offset, replace)
-    print("SUCCESS!")
+    replace = replace.ljust(len(search), b'\x00')  # pad if shorter
+
+    start, end = find_heap(pid)
+    mem = get_heap(pid, start, end)
+
+    index = mem.find(search)
+    if index == -1:
+        print(f"String '{sys.argv[2]}' not found in heap.")
+        sys.exit(1)
+
+    write_heap(pid, start + index, replace)
+
+    # No print on success, just exit 0
+    sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
