@@ -1,2 +1,2 @@
 #!/bin/bash
-whois "$1" | awk -F: '/Registrant|Admin|Tech/ && $1 !~ /Registry/ {gsub(/^ +| +$/,"",$2); print $1","$2}' > "$1.csv"
+whois "$1" | awk 'BEGIN{OFS=","} /Registrant|Admin|Tech/{gsub(/^[ \t]+|[ \t]+$/,"",$2); print $1,$2}' > "$1.csv"
