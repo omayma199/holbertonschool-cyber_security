@@ -6,9 +6,9 @@ Registrant State/Province,CA
 Registrant Postal Code,94025
 Registrant Country,US
 Registrant Phone,+1.6505434800
-Registrant Phone Ext,
+Registrant Phone Ext:,
 Registrant Fax,
-Registrant Fax Ext,
+Registrant Fax Ext:,
 Registrant Email,domain@fb.com
 Admin Name,Domain Admin
 Admin Organization,Meta Platforms, Inc.
@@ -18,9 +18,9 @@ Admin State/Province,CA
 Admin Postal Code,94025
 Admin Country,US
 Admin Phone,+1.6505434800
-Admin Phone Ext,
+Admin Phone Ext:,
 Admin Fax,
-Admin Fax Ext,
+Admin Fax Ext:,
 Admin Email,domain@fb.com
 Tech Name,Domain Admin
 Tech Organization,Meta Platforms, Inc.
@@ -30,7 +30,7 @@ Tech State/Province,CA
 Tech Postal Code,94025
 Tech Country,US
 Tech Phone,+1.6505434800
-Tech Phone Ext,
+Tech Phone Ext:,
 Tech Fax,
-Tech Fax Ext,
+Tech Fax Ext:,
 Tech Email,domain@fb.com
