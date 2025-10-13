@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /hidden-directory/
+Disallow: /wp-admin/
+
+Sitemap: http://web0x04.hbtn/mpg-sitemap-switzerland-regions.xml
+Sitemap: http://web0x04.hbtn/mpg-sitemap-switzerland-places-index.xml
+Sitemap: http://web0x04.hbtn/mpg-sitemap-world-cities.xml

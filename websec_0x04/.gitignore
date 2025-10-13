@@ -1,0 +1,12 @@
+.env
+.venv
+__pycache__
+node_modules
+# misc
+.DS_Store
+dist
+dist-ssr
+*.local
+flask_session
+ssh_tools.json
+**/flask_session

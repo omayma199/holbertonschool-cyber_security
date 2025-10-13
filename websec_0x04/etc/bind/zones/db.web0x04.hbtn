@@ -1,0 +1,13 @@
+$TTL    604800
+@       IN      SOA     ns1.web0x04.hbtn. admin.web0x04.hbtn. (
+                            1
+                       604800
+                        86400
+                      2419200
+                       604800 ) 
+;
+@       IN      NS      ns1.web0x04.hbtn.
+ns1     IN      A       127.0.0.1
+@       IN      A       6.19.0.21
+#SUBDOMAIN		IN      TXT		"Holberton Sec Lab - FLAG: #FLAG"
+#SUBDOMAIN		IN      A		127.0.0.1
