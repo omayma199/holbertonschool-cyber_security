@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block head %}
+    <script type="module" crossorigin src="{{ url_for('static', filename='tasks/' + jsFile )}}"></script>
+{% endblock %}
+{% block body %}
+        <div id="main"></div>
+{% endblock %}

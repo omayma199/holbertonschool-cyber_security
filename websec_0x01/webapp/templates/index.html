@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+<script type="module" crossorigin src="{{ url_for('static', filename='tasks/' + jsFile )}}"></script>
+
+{% block body %}
+    <div id="main" data="{{ session.get('FLAGS') }}" github="{{ session.get('github') }}"></div>
+{% endblock %}

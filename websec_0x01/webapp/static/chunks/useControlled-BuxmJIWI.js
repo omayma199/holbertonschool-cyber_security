@@ -1,0 +1,1 @@
+import{r as e}from"../tasks/a3_nosql_injection.js";function t({controlled:t,default:a,name:s,state:n="value"}){const{current:o}=e.useRef(void 0!==t),[r,u]=e.useState(a);return[o?t:r,e.useCallback((e=>{o||u(e)}),[])]}export{t as u};

@@ -1,0 +1,55 @@
+/* Fonts */
+@import '~@fontsource/be-vietnam-pro/300.css';
+@import '~@fontsource/be-vietnam-pro/400.css';
+@import '~@fontsource/be-vietnam-pro/500.css';
+@import '~@fontsource/be-vietnam-pro/600.css';
+@import '~@fontsource/be-vietnam-pro/700.css';
+@import '~@fontsource/be-vietnam-pro/800.css';
+
+@import '~@fontsource/inter/600.css';
+@import '~@fontsource/inter/700.css';
+@import '~@fontsource/inter/800.css';
+
+@import '~@fontsource/roboto-mono/400.css';
+@import '~@fontsource/roboto-mono/500.css';
+
+/* Remove if mapbox is not used */
+@import '~mapbox-gl/dist/mapbox-gl.css';
+
+/* Remove is recharts is not used */
+.recharts-cartesian-axis-tick-value {
+  color: var(--joy-palette-text-secondary);
+  font-size: var(--joy-fontSize-xs);
+}
+
+.recharts-cartesian-grid line {
+  stroke: var(--joy-palette-divider);
+}
+
+.recharts-pie path:focus {
+  outline: none;
+}
+
+/* Remove if react-simple-maps is not used */
+.rsm-geographies path:focus {
+  outline: none;
+}
+
+/* Variables */
+/* :root {} */
+
+*:focus-visible {
+  outline: var(--joy-palette-primary-600) solid 2px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}

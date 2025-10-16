@@ -1,0 +1,13 @@
+python-dotenv
+redis
+flask
+flask-session
+flask-sqlalchemy
+flask-pymongo
+uwsgidecorators
+gunicorn
+mongomock
+lxml_html_clean
+pytz
+mongoengine
+git+https://github.com/psf/requests-html.git

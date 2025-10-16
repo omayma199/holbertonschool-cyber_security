@@ -1,0 +1,5 @@
+export const JoyTextarea = {
+  styleOverrides: {
+    root: ({ ownerState }) => ({ ...(ownerState.variant === 'outlined' && { boxShadow: 'var(--joy-shadow-xs)' }) }),
+  },
+};

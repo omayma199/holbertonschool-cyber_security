@@ -1,0 +1,75 @@
+[
+    {
+        "id": "a1",
+        "name": "A1 - Broken Access Control",
+        "subs": [
+            {
+                "name": "Hijack a session",
+                "url": "/a1/hijack_session/"
+            }
+        ]
+    },
+    {
+        "id": "a2",
+        "name": "A2 - Cryptographic Failures",
+        "subs": [
+            {
+                "name": "Encoding Failure",
+                "url": "/a2/crypto_encoding_failure/"
+            }
+        ]
+    },
+    {
+        "id": "a3",
+        "name": "A3 - Injection",
+        "subs": [
+            {
+                "name": "Cross Site Scripting - Stored",
+                "url": "/a3/xss_stored/"
+            },
+            {
+                "name": "SQL Injection",
+                "url": "/a3/sql_injection/"
+            },
+            {
+                "name": "noSQL Injection",
+                "url": "/a3/nosql_injection/"
+            }
+        ]
+    },
+    {
+        "id": "a4",
+        "name": "A4 - Insecure Design",
+        "subs": []
+    },
+    {
+        "id": "a5",
+        "name": "A5 - Security Misconfiguration",
+        "subs": []
+    },
+    {
+        "id": "a6",
+        "name": "A6 - Vuln & Outdated Components",
+        "subs": []
+    },
+    {
+        "id": "a7",
+        "name": "A7 - Identity & Auth Failure",
+        "subs": []
+    },
+    {
+        "id": "a8",
+        "name": "A8 - Software & Data Integrity",
+        "subs": []
+    },
+    {
+        "id": "a9",
+        "name": "A9 - Security Logging Failures",
+        "subs": []
+    },
+    {
+        "id": "a10",
+        "name": "A10 - Server-Side Request Forgery",
+        "subs": []
+    }
+]

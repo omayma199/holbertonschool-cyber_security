@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+	<meta name="viewport" content="initial-scale=1, width=device-width" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+	<title>dexterGOAT - Holberton School Edition - by Yosri.me</title>
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		main {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			margin: 0;
+			padding: 0;
+		}
+
+		#sidebar {
+			flex-grow: 0;
+		}
+
+		#main {
+			flex-grow: 1;
+		}
+	</style>
+	<script type="module" crossorigin src="{{ url_for('static', filename='sidebar.js' )}}"></script>
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+	<main>
+		<div id="sidebar" data-titles="{{ titles }}"></div>{% block body %}{% endblock %}
+	</main>
+</body>
+
+</html>
