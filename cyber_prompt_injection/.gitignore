@@ -1,1 +1,10 @@
 *.deb
+*.deb
+*.bin
+*.sbin
+*.pac
+*.ovpn
+*_results.txt
+gobuster_results.txt
+wfuzz_results.txt
+tftp_hits/
