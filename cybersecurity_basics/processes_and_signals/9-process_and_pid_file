@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Creates a PID file, displays messages and handles signals
-echo $$ > /var/run/myscript.pid
+echo $$ > /tmp/myscript.pid
 
 cleanup() {
-    rm -f /var/run/myscript.pid
+    rm -f /tmp/myscript.pid
     exit 0
 }
 
